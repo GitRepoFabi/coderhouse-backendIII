@@ -10,8 +10,8 @@ import mockRouter from './routes/mocks.router.js';
 
 const app = express();
 const PORT = process.env.PORT||8080;
-//const connection = mongoose.connect(`URL DE MONGO`) || 'mongodb://127.0.0.1:27017@pets'
-const connection = mongoose.connect('mongodb://127.0.0.1:27017/pets')
+//const connection = mongoose.connect(`URL DE MONGO`)
+const connection = mongoose.connect('mongodb://127.0.0.1:27017', { dbName: "pets" })
 
 app.use(express.json());
 app.use(cookieParser());
