@@ -24,6 +24,7 @@ router.get('/mockingusers', (req, res) => {
 
 router.post('/generateData', async (req, res) => {
     try {
+
         let { user, pet } = req.query;
 
         user = parseInt(user) || 1;
@@ -33,48 +34,36 @@ router.post('/generateData', async (req, res) => {
             return res.status(400).json({ error: "Cantidad enviada debe de ser positiva" });
         }
 
-        // 1. Generar y guardar usuarios
+        //Genero usuarios según el largo recibido por parámetro
         let users = [];
         for (let i = 0; i < user; i++) {
             users.push(await generaUser());
         }
 
-        const usersInserted = await userModel.insertMany(users);
+        //Inserto los datos del array en la BD
+        const usersInsertados = await userModel.insertMany(users);
 
-        // 2. Generar mascotas y asignar owner si está adoptada
-        let petsToInsert = [];
+        let pets = [];
 
+        //Genero mascotas según el largo recibido por parámetro
         for (let i = 0; i < pet; i++) {
-            let petData = generaPet().pet;
+            let generaData = generaPet().pet;
 
-            if (petData.adopted) {
-                // Seleccionamos un usuario aleatorio de los insertados
-                const randomUser = usersInserted[Math.floor(Math.random() * usersInserted.length)];
-                petData.owner = randomUser._id;
+            if (generaData.adopted) {
+                const randomUser = usersInsertados[Math.floor(Math.random() * usersInsertados.length)];
+                generaData.owner = randomUser._id;
             }
 
-            petsToInsert.push(petData);
+            pets.push(generaData);
         }
 
-        // 3. Insertamos todas las mascotas
-        const petsInserted = await petModel.insertMany(petsToInsert);
-
-        // 4. Relacionamos mascotas adoptadas con sus respectivos usuarios
-        const updates = petsInserted
-            .filter(p => p.owner)
-            .map(pet => (
-                userModel.updateOne(
-                    { _id: pet.owner },
-                    { $push: { pets: { _id: pet._id } } }
-                )
-            ));
-
-        await Promise.all(updates);
+        //Inserto los datos del array en la BD
+        const petsInsertados = await petModel.insertMany(pets);
 
         return res.status(201).json({
             message: 'Datos generados exitosamente',
-            users: usersInserted,
-            pets: petsInserted
+            users: usersInsertados,
+            pets: petsInsertados
         });
 
     } catch (error) {
