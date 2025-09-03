@@ -1,0 +1,126 @@
+openapi: 3.0.0
+info:
+  title: Adoptame - Back 3
+  version: 1.0.0
+  description: ''
+servers:
+  - url: localhost
+paths:
+  /api/mocks/generateData:
+    parameters: []
+    post:
+      summary: Generar usuarios/mascotas con parámetros
+      tags:
+        - Mock
+      parameters:
+        - name: user
+          in: query
+          required: false
+          example: '1'
+          schema:
+            type: integer
+        - name: pet
+          in: query
+          required: false
+          example: '1'
+          schema:
+            type: integer
+      responses: 
+        '201':
+          description: Datos generados exitosamente
+        '400':
+          description: Cantidad enviada debe de ser positiva
+        '500':
+          description: Error interno del servidor  
+  /api/users:
+    parameters: []
+    get:
+      summary: Consulta usuarios
+      tags:
+        - Users      
+      parameters: []
+      responses: 
+        '200':
+          description: Respuesta Listado Usuarios
+
+  /api/users/{uid}:
+    get:
+      summary: Lista un Usuario, por id
+      tags:
+        - Users        
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: id del usuario que se está solicitando
+          schema:
+            type: string      
+      responses:
+        '200':
+          description: Respuesta Lista un Usuario, por id
+          content:
+            application/json:
+              example:
+                message: 'Lista de usuarios, ingresando param: 60acc54545c8e82e0475100a'
+                usuario:
+                  id: 6893eaba2ac0b16fa177be7a
+                  first_name: Jerónimo
+                  last_name: Arroyo Alonzo
+                  email: Jeronimo_ArroyoAlonzo63@gmail.com
+                  password: xjkkakjsiz
+                  role: user
+                  pets: []
+        '404':
+          'description': Usuario no encontrado
+
+    delete:
+      summary: Deletea un Usuario, por id
+      tags:
+        - Users        
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: id del usuario que se va a borrar
+          schema:
+            type: string   
+      responses:
+        '200':
+          'description': Usuario eliminado
+        '404':
+          'description': Usuario no encontrado   
+    
+    put:
+      summary: Actualiza un usuario
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: id del usuario que se va a actualizar
+          schema:
+            type: string   
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/createUser'
+      responses:
+        "200":
+          description: Usuario actualizado
+        "404":
+          description: Usuario no encontrado          
+        "500":
+          description: Error interno del servidor
+  /api/pets:
+    parameters: []
+    get:
+      summary: Consulta mascotas
+      tags:
+        - Pets      
+      parameters: []
+      responses:
+        '200':
+          description: Respuesta Listado mascotas
