@@ -1,4 +1,4 @@
-<h2> Entrega final – Comisión 74590 – Backend III: Testing y Escalabilidad Backend - Coderhouse </h2>
+<h2> Entrega final – Comisión 74590 – Backend III: Testing y Escalabilidad Backend - Proyecto Adoptme - Coderhouse </h2>
 
 <h3>Objetivos generales:</h3>
 
