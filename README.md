@@ -32,7 +32,7 @@ npm install
 
 ```bash
 PORT=
-MONGO_URI=
+MONGO_URL=
 DB_NAME=
 ```
 
