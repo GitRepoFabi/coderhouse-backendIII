@@ -64,7 +64,7 @@ Esto deberá ser suficiente para correr los test unitarios elaborados y configur
 1. Pararse en el directorio del proyecto y ejecutar el siguiente comando para crear la imagen:
    
 ```bash
-docker build -t DOCKER_USERNAME/serverxxxx .
+docker build -t DOCKER_USERNAME/serverxxxx:1.0.0 .
 ```
 En Docker Desktop debe de quedar así:
 
