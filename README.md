@@ -59,7 +59,7 @@ Esto deberá ser suficiente para correr los test unitarios elaborados y configur
 
 
 
-<h3> Instrucciones para crear la imagen local en Docker: </h3>
+<h3> Instrucciones para crear la imagen local en Docker y subirla a Dockerhub: </h3>
 
 1. Pararse en el directorio del proyecto y ejecutar el siguiente comando para crear la imagen:
    
