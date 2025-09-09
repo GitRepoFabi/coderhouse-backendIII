@@ -122,4 +122,7 @@ Si configuramos todo bien, debería aparecernos lo siguiente:
 <img width="886" height="549" alt="image" src="https://github.com/user-attachments/assets/ca1d4b60-d6f0-442c-9185-856d82e37b2b" />
 
 
+Aplicación desplegada en la siguiente URL: https://coderhouse-backendiii-production.up.railway.app
+<br/>
+Documentación pública publicada en https://coderhouse-backendiii-production.up.railway.app/docs
  
